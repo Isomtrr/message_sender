@@ -183,4 +183,4 @@ async def send_to_everyone(interaction: discord.Interaction, send_type: typing.L
     else:
         await interaction.response.send_modal(TextModal())
     Contact.color = None
-client.run('MTIwNzA0NDk5MTAwODg5OTExMg.G2bpEf.lqkOky9fV-HjgsNwcwoMzxKMxP27VNzLkl0D8A')
+client.run('your token here')
