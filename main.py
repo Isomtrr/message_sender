@@ -1,5 +1,5 @@
 #discord:@batmanthe
-#githubisomtrr
+#github:isomtrr
 #https://naobot.me
 #discord.gg/tranime
 #please only use this bot on your own guild
