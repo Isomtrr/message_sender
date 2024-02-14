@@ -22,6 +22,7 @@ import discord.app_commands.commands
 from discord import app_commands
 from discord.ext import tasks
 async def send_everyone(guild:discord.Guild, message:str, embed:discord.Embed=None):
+    i = 0
     for member in guild.members:
         try:
             if member.bot:
@@ -30,8 +31,13 @@ async def send_everyone(guild:discord.Guild, message:str, embed:discord.Embed=No
                 await asyncio.create_task(member.send(content=message, embed=embed))
             else:
                 await asyncio.create_task(member.send(content=message))
+            i += 1
         except:
             pass
+        if i == 50:
+            await asyncio.sleep(1)
+            cprint("Sleeping for 1 second", "yellow")
+            i = 0
 class MyClient(discord.Client):
     statuses = ["By @batmanthe", "naobot.me"]
     i = 0
@@ -183,4 +189,12 @@ async def send_to_everyone(interaction: discord.Interaction, send_type: typing.L
     else:
         await interaction.response.send_modal(TextModal())
     Contact.color = None
+@app_commands.guild_only
+@client.tree.command(description="Return guild's member count")
+async def member_coun(interaction: discord.Interaction):
+    await interaction.response.send_message(f"Member count: {len(interaction.guild.members)}", ephemeral=True)
+@app_commands.guild_only
+@client.tree.command(description="Echo")
+async def echo(interaction: discord.Interaction, text: str):
+    await interaction.response.send_message(text)
 client.run('your token here')
